@@ -25,7 +25,7 @@ def upload_file():
     file_bytes = file.read()
     try:
         content = file_bytes.decode('utf-8')
-    except Exception:
+    except UnicodeDecodeError:
         return jsonify({"error": "Only text files are supported."}), 400
     # Check for printable characters
     import string
