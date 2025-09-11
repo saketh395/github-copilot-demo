@@ -38,5 +38,15 @@ def upload_file():
         return jsonify({"error": "Only text files are supported."}), 400
     return jsonify({"content": content, "filename": file.filename}), 200
 
+# Endpoint to check if a number is even
+@app.route('/api/check_even', methods=['POST'])
+def check_even():
+    data = request.get_json()
+    number = data.get("number")
+    if not isinstance(number, int):
+        return jsonify({"error": "Input must be an integer."}), 400
+    is_even = (number % 2 == 0)
+    return jsonify({"number": number, "is_even": is_even}), 200
+
 if __name__ == '__main__':
     app.run(debug=True)
