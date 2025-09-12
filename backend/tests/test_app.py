@@ -35,6 +35,6 @@ def test_upload_non_text_file(client):
     }
     response = client.post('/api/upload', data=data, content_type='multipart/form-data')
     assert response.status_code == 400
-    json_data = response.get_json(
+    json_data = response.get_json()
     assert 'error' in json_data
     assert json_data['error'] == 'Only text files are supported.'
